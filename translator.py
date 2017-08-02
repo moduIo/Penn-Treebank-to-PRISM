@@ -24,30 +24,40 @@ def parse(productions, nonterminals, path):
 	for rule in rules:
 
 		# Skip extra whitespace at bottom of file
-		if rule != '':
+		if rule == '':
+			continue 
+
+		# Break up the rules into LHS and RHS parts
+		elif '-->' in rule:
 			split = rule.split('-->')
-			lhs = split[0].split(' ')[1]  # Remove counts from LHS production rule
-			rhs = split[1]                # RHS of production rule
 
-			# Remove extra formatting from .pos file
-			if path == sys.argv[2]:
-				rhs = rhs[3:-3]
+		elif '--->' in rule:
+			split = rule.split('--->')
 
-			# Add LHS to nonterminals
-			nonterminals.add(lhs)
+		lhs = split[0].split(' ')[1]  # Remove counts from LHS production rule
+		rhs = split[1]                # RHS of production rule
 
-			# Add rule to productions
-			if lhs in productions:
-				productions[lhs].append(rhs)
+		# Remove extra formatting from .pos file
+		if path == sys.argv[2]:
+			rhs = rhs[3:-3].replace('\'', '')
 
-			else:
-				productions[lhs] = [rhs]
+		# Add LHS to nonterminals
+		nonterminals.add(lhs)
+
+		# Add rule to productions
+		if lhs in productions:
+			productions[lhs].append(rhs)
+
+		else:
+			productions['START'].append([lhs])
+			productions[lhs] = [rhs]
 
 ###
 # Main
 ###
 productions = {'START': []}  # Dictionary of rules indexed by LHS of production
 nonterminals = set()         # Set of nonterminal symbols
+nonterminals.add('START')
 
 # Parse the files
 parse(productions, nonterminals, sys.argv[1])
@@ -87,7 +97,7 @@ for nt in sorted(nonterminals):
 model_sec = '\n\n%%------------------------------------'
 model_sec += '\n%%  Modeling part:'
 model_sec += '\n%%------------------------------------'
-model_sec += '\n\npcfg(L) :- pcfg(\'S\', L-[]).'
+model_sec += '\n\npcfg(L) :- pcfg(\'START\', L-[]).'
 model_sec += '\n\npcfg(LHS,L0-L1) :-'
 model_sec += '\n    ( nonterminal(LHS) -> msw(LHS, RHS), proj(RHS, L0-L1)'
 model_sec += '\n    ; L0 = [LHS|L1]'

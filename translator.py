@@ -46,7 +46,11 @@ def parse(productions, nonterminals, path):
 
 		# Add rule to productions
 		if lhs in productions:
-			productions[lhs].append(rhs)
+			if path == sys.argv[2]:
+				productions[lhs].append([rhs])
+				
+			else:
+				productions[lhs].append(rhs)
 
 		else:
 			productions['START'].append([lhs])

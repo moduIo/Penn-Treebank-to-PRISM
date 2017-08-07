@@ -21,14 +21,10 @@ def parse(productions, nonterminals, path):
 		rules = f.read().split('\n')
 
 	# Process all rules
-	for rule in rules:
-
-		# Skip extra whitespace at bottom of file
-		if rule == '':
-			continue 
+	for rule in rules[:-1]:
 
 		# Break up the rules into LHS and RHS parts
-		elif '-->' in rule:
+		if '-->' in rule:
 			split = rule.split('-->')
 
 		elif '--->' in rule:
@@ -54,7 +50,12 @@ def parse(productions, nonterminals, path):
 
 		else:
 			productions['START'].append([lhs])
-			productions[lhs] = [rhs]
+
+			if path == sys.argv[2]:
+				productions[lhs] = [[rhs]]
+				
+			else:
+				productions[lhs] = [rhs]
 
 ###
 # Main
@@ -87,7 +88,8 @@ values_sec += '\n% Probabilistic production rules'
 values_sec += '\n%'
 
 for p in sorted(productions):
-	values_sec += '\nvalues(\'' + p + '\', ' + str(productions[p]).replace('\"', '') + ').'
+	cleaned = str(productions[p]).replace('"[', '[').replace(']"', ']').replace('\'[', '[').replace(']\'', ']').replace('\\\'', '\'')
+	values_sec += '\nvalues(\'' + p + '\', ' + cleaned + ').'
 
 # Format nonterminal/1 section and PRISM rules
 nonterminals_sec = '\n\n%'

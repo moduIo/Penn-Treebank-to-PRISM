@@ -8,7 +8,7 @@
 # sys.argv[3] := PRISM program output file path
 #
 # Example Usage: 
-# python3 translator "Parses/wsj0.full" "Parses/wsj0.pos" "pcfg.psm"
+# python3 translator.py "Parses/wsj0.full" "Parses/wsj0.pos" "pcfg.psm"
 ####
 import sys
 

@@ -27,7 +27,8 @@ def parse(samples, path):
 
 		# Remove POS annotation from each word
 		for word in sentence.split(' ')[:-1]:
-			sample += word.split('/')[1] + ', '
+			cleaned = word.split('/')[1][1:-1].replace("'", "\\'")
+			sample += "'" + cleaned + "'" + ', '
 
 		sample = sample[:-2]  # Remove extra ', '
 		sample += "])."

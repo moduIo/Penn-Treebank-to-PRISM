@@ -35,7 +35,7 @@ def parse(productions, nonterminals, path):
 
 		# Remove extra formatting from .pos file
 		if path == sys.argv[2]:
-			rhs = rhs[3:-3].replace('\'', '')
+			rhs = rhs[3:-3].replace('\'', '\\\'')
 
 		# Add LHS to nonterminals
 		nonterminals.add(lhs)

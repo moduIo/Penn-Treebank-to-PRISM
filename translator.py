@@ -37,6 +37,9 @@ def parse(productions, nonterminals, path):
 		if path == sys.argv[2]:
 			rhs = rhs[3:-3].replace('\'', '\\\'')
 
+			if lhs == rhs:
+				lhs = "NT_" + lhs
+
 		# Add LHS to nonterminals
 		nonterminals.add(lhs)
 

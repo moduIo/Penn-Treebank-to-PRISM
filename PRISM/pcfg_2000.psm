@@ -1,0 +1,115 @@
+%%%
+% PRISM program for Probabilistic Context Free Grammar models.
+% The grammar is derived from the WSJ Treebank corpus.
+% ---
+% The structure of this code was taken from PRISM User's Manual (Version 2.2) - Section 10.2
+% Source: http://rjida.meijo-u.ac.jp/prism/download/prism22.pdf
+%%%
+
+%%------------------------------------
+%%  Declarations:
+%%------------------------------------
+
+%
+% Probabilistic production rules
+%
+values('-NONE-', [['*ICH*-1'], ['*'], ['0'], ['*PRO*']]).
+values('ADJP', [['RB', 'HYPH', 'VBN']]).
+values('ADVP-TMP', [['RB']]).
+values('CC', [['and']]).
+values('CD', [['747'], ['793'], ['two'], ['200']]).
+values('DT', [['the'], ['an'], ['These'], ['a'], ['each']]).
+values('HYPH', [['-']]).
+values('IN', [['with'], ['Under'], ['of'], ['to'], ['for'], ['among'], ['in']]).
+values('JJ', [['other'], ['aft'], ['tentative'], ['automotive'], ['additional'], ['structural'], ['major']]).
+values('NN', [['contract'], ['agreement'], ['floor'], ['unit'], ['jetliner'], ['box'], ['torque'], ['keel'], ['aerospace'], ['beam'], ['concern'], ['pressure']]).
+values('NNP', [['Calif.'], ['International'], ['Rockwell'], ['El'], ['Co.'], ['Tulsa'], ['Corp.'], ['Boeing'], ['Segundo']]).
+values('NNS', [['planes'], ['wings'], ['edges'], ['bulkheads'], ['shipsets'], ['graphics'], ['jetliners'], ['parts'], ['electronics']]).
+values('NP', [['NP', 'VP'], ['NNP'], ['DT', 'JJ', 'NN', 'NN'], ['NP', 'CD', 'JJ', 'NNS'], ['VBN', 'VBG', 'NNS'], ['NN', 'NN'], ['CD', 'JJ', 'ADJP', 'NNS'], ['DT', 'JJ', 'NN'], ['DT', 'NNS'], ['NP', 'S-1'], ['DT', 'NN', 'POS'], ['NP', 'CD', 'NNS'], ['PRP$', 'NN', 'S'], ['-NONE-'], ['NP', 'PP'], ['JJ', 'NNS'], ['CD'], ['DT', 'NN', 'NN'], ['DT', 'VBG', 'NN'], ['NNP', 'NNP'], ['NNP', 'POS'], ['NNP', 'NNP', 'NNP', 'POS'], ['NP', ',', 'NP', ','], ['NP', ',', 'NP', ',', 'NP', ',', 'NP', 'CC', 'NP']]).
+values('NP-PRD', [['DT', 'UCP', 'NN']]).
+values('NP-SBJ', [['DT', 'NN'], ['NNP'], ['NP', ',', 'VP'], ['DT'], ['-NONE-'], ['PRP'], ['NP', 'NNP', 'NN']]).
+values('NT_,', [[',']]).
+values('NT_.', [['.']]).
+values('POS', [["\'s"]]).
+values('PP', [['IN', 'NP']]).
+values('PP-CLR', [['IN', 'NP']]).
+values('PP-LOC', [['IN', 'NP']]).
+values('PP-LOC-CLR', [['IN', 'NP']]).
+values('PRN', [[',', 'S', ',']]).
+values('PRP', [['it']]).
+values('PRP$', [['its']]).
+values('RB', [['already'], ['so']]).
+values('S', [['NP-SBJ', 'VP', '.'], ['NP-SBJ', 'VP'], ['PP-LOC', 'PRN', 'NP-SBJ', 'VP', '.'], ['-NONE-']]).
+values('S-1', [['NP-SBJ', 'VP']]).
+values('SBAR', [['-NONE-', 'S']]).
+values('SBAR-CLR', [['IN', 'S']]).
+values('START', [['PP-LOC-CLR'], ['NP'], ['UCP'], ['SBAR-CLR'], ['NP-SBJ'], ['S'], ['ADJP'], ['PP'], ['PRN'], ['VP'], ['PP-LOC'], ['TOP'], ['NP-PRD'], ['SBAR'], ['ADVP-TMP'], ['S-1'], ['PP-CLR'], ['DT'], ['CD'], ['VBD'], ['VBZ'], ['HYPH'], ['NN'], ['-NONE-'], ['NT_,'], ['VBG'], ['VBN'], ['RB'], ['NT_.'], ['IN'], ['JJ'], ['NNP'], ['VB'], ['NNS'], ['POS'], ['CC'], ['PRP'], ['TO'], ['VBP'], ['PRP$']]).
+values('TO', [['to']]).
+values('TOP', [['S']]).
+values('UCP', [['NN', ',', 'NNS', ',', 'JJ', 'CC', 'NNS']]).
+values('VB', [['supply'], ['provide']]).
+values('VBD', [['signed'], ['said']]).
+values('VBG', [['existing'], ['extending'], ['leading']]).
+values('VBN', [['based'], ['delivered'], ['fixed'], ['called']]).
+values('VBP', [['include']]).
+values('VBZ', [['has'], ['is'], ['calls']]).
+values('VP', [['VBD', 'NP'], ['VBZ', 'ADVP-TMP', 'VP'], ['VBG', 'NP'], ['VBN', 'NP', 'PP-LOC-CLR'], ['VBZ', 'NP-PRD'], ['VBD'], ['VBD', 'SBAR'], ['VB', 'NP'], ['VB', 'NP', 'PP'], ['VBZ', 'SBAR-CLR'], ['VBN', 'NP', 'PP-CLR'], ['VBP', ',', 'PP-LOC', ',', 'NP'], ['TO', 'VP']]).
+
+%
+% Nonterminals
+%
+nonterminal('-NONE-').
+nonterminal('ADJP').
+nonterminal('ADVP-TMP').
+nonterminal('CC').
+nonterminal('CD').
+nonterminal('DT').
+nonterminal('HYPH').
+nonterminal('IN').
+nonterminal('JJ').
+nonterminal('NN').
+nonterminal('NNP').
+nonterminal('NNS').
+nonterminal('NP').
+nonterminal('NP-PRD').
+nonterminal('NP-SBJ').
+nonterminal('NT_,').
+nonterminal('NT_.').
+nonterminal('POS').
+nonterminal('PP').
+nonterminal('PP-CLR').
+nonterminal('PP-LOC').
+nonterminal('PP-LOC-CLR').
+nonterminal('PRN').
+nonterminal('PRP').
+nonterminal('PRP$').
+nonterminal('RB').
+nonterminal('S').
+nonterminal('S-1').
+nonterminal('SBAR').
+nonterminal('SBAR-CLR').
+nonterminal('START').
+nonterminal('TO').
+nonterminal('TOP').
+nonterminal('UCP').
+nonterminal('VB').
+nonterminal('VBD').
+nonterminal('VBG').
+nonterminal('VBN').
+nonterminal('VBP').
+nonterminal('VBZ').
+nonterminal('VP').
+
+%%------------------------------------
+%%  Modeling part:
+%%------------------------------------
+
+pcfg(L) :- pcfg('START', L-[]).
+
+pcfg(LHS,L0-L1) :-
+    ( nonterminal(LHS) -> msw(LHS, RHS), proj(RHS, L0-L1)
+    ; L0 = [LHS|L1]
+    ).
+
+proj([], L-L).
+proj([X|Xs], L0-L1) :- pcfg(X, L0-L2), proj(Xs, L2-L1).

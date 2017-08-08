@@ -1,0 +1,5 @@
+sentence(0, ['NNP', 'NNP', 'NNP', 'POS', 'NNP', 'NN', 'VBD', 'PRP', 'VBD', 'DT', 'JJ', 'NN', 'VBG', 'PRP$', 'NN', 'IN', 'NNP', 'NNP', 'TO', 'VB', 'JJ', 'NNS', 'IN', 'NNP', 'POS', 'CD', 'NNS', '.']).
+sentence(1, ['NNP', 'VBD', 'DT', 'NN', 'VBZ', 'IN', 'PRP', 'TO', 'VB', 'CD', 'JJ', 'RB', 'HYPH', 'VBN', 'NNS', 'IN', 'DT', 'NNS', '.']).
+sentence(2, ['DT', 'VBP', ',', 'IN', 'JJ', 'NNS', ',', 'DT', 'NN', 'POS', 'CD', 'JJ', 'NNS', ',', 'DT', 'NN', 'NN', ',', 'NN', 'NN', ',', 'VBN', 'VBG', 'NNS', 'IN', 'DT', 'NNS', 'CC', 'DT', 'JJ', 'NN', 'NN', '.']).
+sentence(3, ['IN', 'DT', 'VBG', 'NN', ',', 'NNP', 'VBD', ',', 'PRP', 'VBZ', 'RB', 'VBN', 'CD', 'IN', 'DT', 'NNS', 'IN', 'NNP', '.']).
+sentence(4, ['NNP', ',', 'VBN', 'IN', 'NNP', 'NNP', ',', 'NNP', ',', 'VBZ', 'DT', 'NN', ',', 'NNS', ',', 'JJ', 'CC', 'NNS', 'NN', '.']).

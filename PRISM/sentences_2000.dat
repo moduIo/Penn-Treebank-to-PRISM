@@ -1,0 +1,3 @@
+pcfg(['Rockwell', 'said', '0', 'the', 'agreement', 'calls', 'for', 'it', 'to', 'supply', '200', 'additional', 'so', '-', 'called', 'shipsets', 'for', 'the', 'planes', '.']).
+pcfg(['Under', 'the', 'existing', 'contract', ',', 'Rockwell', 'said', ',', 'it', 'has', 'already', 'delivered', '793', 'of', 'the', 'shipsets', 'to', 'Boeing', '.']).
+pcfg(['Rockwell', ',', 'based', '*', 'in', 'El', 'Segundo', ',', 'Calif.', ',', 'is', 'an', 'aerospace', ',', 'electronics', ',', 'automotive', 'and', 'graphics', 'concern', '.']).

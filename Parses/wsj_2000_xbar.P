@@ -1,0 +1,89 @@
+production('VP-XBAR', ['VP-XBAR', 'PP-LOC'], 0.142857).
+production('PP-LOC-CLR', ['IN', 'NP'], 1).
+production('VP-XBAR', ['VBP', ','], 0.142857).
+production('NP', ['NP', 'VP'], 0.030303).
+production('NP-XBAR', ['NP', ','], 0.0833333).
+production('UCP-XBAR', ['UCP-XBAR', ','], 0.2).
+production('NP-XBAR', ['NP-XBAR', 'CC'], 0.0416667).
+production('UCP-XBAR', ['NN', ','], 0.2).
+production('SBAR-CLR', ['IN', 'S'], 1).
+production('VP-XBAR', ['VBN', 'NP'], 0.285714).
+production('NP-XBAR', ['NNP', 'NNP'], 0.0416667).
+production('UCP-XBAR', ['UCP-XBAR', 'NNS'], 0.2).
+production('S', ['S-XBAR', '.'], 0.5).
+production('PP-LOC', ['IN', 'NP'], 1).
+production('NP-XBAR', ['NP', 'CD'], 0.0833333).
+production('NP-SBJ', ['DT', 'NN'], 0.1).
+production('NP-XBAR', ['DT', 'VBG'], 0.0416667).
+production('VP', ['VP-XBAR', 'NP'], 0.0666667).
+production('NP', ['NP-XBAR', 'S'], 0.030303).
+production('NP', ['NN', 'NN'], 0.030303).
+production('ADVP-TMP', ['RB'], 1).
+production('PP', ['IN', 'NP'], 1).
+production('S', ['NP-SBJ', 'VP'], 0.4).
+production('PRN-XBAR', [',', 'S'], 1).
+production('NP-XBAR', ['NP-XBAR', 'JJ'], 0.0416667).
+production('VP', ['VBD', 'NP'], 0.0666667).
+production('NP', ['NNP'], 0.0909091).
+production('NP-SBJ', ['NNP'], 0.2).
+production('NP', ['DT', 'NNS'], 0.0909091).
+production('S-XBAR', ['PP-LOC', 'PRN'], 0.142857).
+production('VP', ['VP-XBAR', 'PP'], 0.0666667).
+production('TOP', ['S'], 1).
+production('VP', ['VP-XBAR', 'PP-LOC-CLR'], 0.0666667).
+production('S-XBAR', ['S-XBAR', 'VP'], 0.142857).
+production('S-XBAR', ['S-XBAR', 'NP-SBJ'], 0.142857).
+production('UCP-XBAR', ['UCP-XBAR', 'JJ'], 0.2).
+production('NP', ['NP', 'S-1'], 0.030303).
+production('UCP-XBAR', ['UCP-XBAR', 'CC'], 0.2).
+production('VP', ['VBG', 'NP'], 0.0666667).
+production('VP', ['VP-XBAR', 'PP-CLR'], 0.0666667).
+production('PRN', ['PRN-XBAR', ','], 1).
+production('NP', ['-NONE-'], 0.030303).
+production('NP-XBAR', ['DT', 'NN'], 0.0833333).
+production('NP-XBAR', ['VBN', 'VBG'], 0.0416667).
+production('NP-SBJ-XBAR', ['NP', 'NNP'], 0.5).
+production('NP-XBAR', ['DT', 'JJ'], 0.0833333).
+production('UCP', ['UCP-XBAR', 'NNS'], 1).
+production('NP', ['NP', 'PP'], 0.121212).
+production('NP', ['JJ', 'NNS'], 0.0606061).
+production('NP', ['CD'], 0.030303).
+production('NP-XBAR', ['NP-XBAR', 'ADJP'], 0.0416667).
+production('NP-PRD-XBAR', ['DT', 'UCP'], 1).
+production('NP-XBAR', ['CD', 'JJ'], 0.0416667).
+production('VP-XBAR', ['VP-XBAR', ','], 0.142857).
+production('VP', ['VBZ', 'NP-PRD'], 0.0666667).
+production('NP-SBJ', ['NP-SBJ-XBAR', 'NN'], 0.1).
+production('NP-PRD', ['NP-PRD-XBAR', 'NN'], 1).
+production('ADJP-XBAR', ['RB', 'HYPH'], 1).
+production('VP', ['VP-XBAR', 'VP'], 0.0666667).
+production('S-XBAR', ['NP-SBJ', 'VP'], 0.571429).
+production('VP', ['VBD'], 0.0666667).
+production('SBAR', ['-NONE-', 'S'], 1).
+production('NP', ['NNP', 'NNP'], 0.0606061).
+production('VP', ['VBD', 'SBAR'], 0.133333).
+production('NP-XBAR', ['NP-XBAR', 'NP'], 0.166667).
+production('NP', ['NP-XBAR', 'NP'], 0.030303).
+production('NP-XBAR', ['PRP$', 'NN'], 0.0416667).
+production('VP', ['VB', 'NP'], 0.0666667).
+production('NP', ['NNP', 'POS'], 0.030303).
+production('NP-SBJ', ['DT'], 0.1).
+production('NP', ['NP-XBAR', 'POS'], 0.0606061).
+production('NP', ['NP-XBAR', 'NN'], 0.121212).
+production('NP-SBJ', ['-NONE-'], 0.1).
+production('NP', ['NP-XBAR', 'NNS'], 0.121212).
+production('NP-XBAR', ['NP-XBAR', 'NNP'], 0.0416667).
+production('NP-XBAR', ['NP-XBAR', 'NN'], 0.0416667).
+production('S-1', ['NP-SBJ', 'VP'], 1).
+production('NP-SBJ', ['PRP'], 0.3).
+production('S', ['-NONE-'], 0.1).
+production('VP', ['VBZ', 'SBAR-CLR'], 0.0666667).
+production('VP-XBAR', ['VBZ', 'ADVP-TMP'], 0.142857).
+production('NP-XBAR', ['NP-XBAR', ','], 0.0833333).
+production('NP', ['NP-XBAR', ','], 0.030303).
+production('NP-SBJ-XBAR', ['NP', ','], 0.5).
+production('NP-SBJ', ['NP-SBJ-XBAR', 'VP'], 0.1).
+production('VP-XBAR', ['VB', 'NP'], 0.142857).
+production('VP', ['TO', 'VP'], 0.133333).
+production('PP-CLR', ['IN', 'NP'], 1).
+production('ADJP', ['ADJP-XBAR', 'VBN'], 1).

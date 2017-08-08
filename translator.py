@@ -37,14 +37,16 @@ def parse(productions, nonterminals, path):
 		if path == sys.argv[2]:
 			rhs = rhs[3:-3].replace('\'', '\\\'')
 
+			# Skip rules which stand for themselves
 			if lhs == rhs:
-				lhs = "NT_" + lhs
+				continue
 
 		# Add LHS to nonterminals
 		nonterminals.add(lhs)
 
 		# Add rule to productions
 		if lhs in productions:
+			
 			if path == sys.argv[2]:
 				productions[lhs].append([rhs])
 				
@@ -52,7 +54,6 @@ def parse(productions, nonterminals, path):
 				productions[lhs].append(rhs)
 
 		else:
-			productions['START'].append([lhs])
 
 			if path == sys.argv[2]:
 				productions[lhs] = [[rhs]]
@@ -63,9 +64,8 @@ def parse(productions, nonterminals, path):
 ###
 # Main
 ###
-productions = {'START': []}  # Dictionary of rules indexed by LHS of production
-nonterminals = set()         # Set of nonterminal symbols
-nonterminals.add('START')
+productions = {}      # Dictionary of rules indexed by LHS of production
+nonterminals = set()  # Set of nonterminal symbols
 
 # Parse the files
 parse(productions, nonterminals, sys.argv[1])
@@ -91,7 +91,7 @@ values_sec += '\n% Probabilistic production rules'
 values_sec += '\n%'
 
 for p in sorted(productions):
-	cleaned = str(productions[p]).replace('"[', '[').replace(']"', ']').replace('\'[', '[').replace(']\'', ']').replace('\\\'', '\'')
+	cleaned = str(productions[p]).replace('["', '[\'').replace('"]', '\']').replace('"[', '[').replace(']"', ']').replace('\'[', '[').replace(']\'', ']').replace('\\\'', '\'')
 	values_sec += '\nvalues(\'' + p + '\', ' + cleaned + ').'
 
 # Format nonterminal/1 section and PRISM rules
@@ -106,8 +106,8 @@ for nt in sorted(nonterminals):
 model_sec = '\n\n%%------------------------------------'
 model_sec += '\n%%  Modeling part:'
 model_sec += '\n%%------------------------------------'
-model_sec += '\n\npcfg(L) :- pcfg(\'START\', L-[]).'
-model_sec += '\n\npcfg(LHS,L0-L1) :-'
+model_sec += '\n\npcfg(L) :- pcfg(\'S\', L-[]).'
+model_sec += '\n\npcfg(LHS, L0-L1) :-'
 model_sec += '\n    ( nonterminal(LHS) -> msw(LHS, RHS), proj(RHS, L0-L1)'
 model_sec += '\n    ; L0 = [LHS|L1]'
 model_sec += '\n    ).'

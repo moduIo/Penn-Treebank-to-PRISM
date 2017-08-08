@@ -28,9 +28,7 @@ values('NNS', [['planes'], ['wings'], ['edges'], ['bulkheads'], ['shipsets'], ['
 values('NP', [['NP', 'VP'], ['NNP'], ['DT', 'JJ', 'NN', 'NN'], ['NP', 'CD', 'JJ', 'NNS'], ['VBN', 'VBG', 'NNS'], ['NN', 'NN'], ['CD', 'JJ', 'ADJP', 'NNS'], ['DT', 'JJ', 'NN'], ['DT', 'NNS'], ['NP', 'S-1'], ['DT', 'NN', 'POS'], ['NP', 'CD', 'NNS'], ['PRP$', 'NN', 'S'], ['-NONE-'], ['NP', 'PP'], ['JJ', 'NNS'], ['CD'], ['DT', 'NN', 'NN'], ['DT', 'VBG', 'NN'], ['NNP', 'NNP'], ['NNP', 'POS'], ['NNP', 'NNP', 'NNP', 'POS'], ['NP', ',', 'NP', ','], ['NP', ',', 'NP', ',', 'NP', ',', 'NP', 'CC', 'NP']]).
 values('NP-PRD', [['DT', 'UCP', 'NN']]).
 values('NP-SBJ', [['DT', 'NN'], ['NNP'], ['NP', ',', 'VP'], ['DT'], ['-NONE-'], ['PRP'], ['NP', 'NNP', 'NN']]).
-values('NT_,', [[',']]).
-values('NT_.', [['.']]).
-values('POS', [["\'s"]]).
+values('POS', [['\'s']]).
 values('PP', [['IN', 'NP']]).
 values('PP-CLR', [['IN', 'NP']]).
 values('PP-LOC', [['IN', 'NP']]).
@@ -43,7 +41,6 @@ values('S', [['NP-SBJ', 'VP', '.'], ['NP-SBJ', 'VP'], ['PP-LOC', 'PRN', 'NP-SBJ'
 values('S-1', [['NP-SBJ', 'VP']]).
 values('SBAR', [['-NONE-', 'S']]).
 values('SBAR-CLR', [['IN', 'S']]).
-values('START', [['PP-LOC-CLR'], ['NP'], ['UCP'], ['SBAR-CLR'], ['NP-SBJ'], ['S'], ['ADJP'], ['PP'], ['PRN'], ['VP'], ['PP-LOC'], ['TOP'], ['NP-PRD'], ['SBAR'], ['ADVP-TMP'], ['S-1'], ['PP-CLR'], ['DT'], ['CD'], ['VBD'], ['VBZ'], ['HYPH'], ['NN'], ['-NONE-'], ['NT_,'], ['VBG'], ['VBN'], ['RB'], ['NT_.'], ['IN'], ['JJ'], ['NNP'], ['VB'], ['NNS'], ['POS'], ['CC'], ['PRP'], ['TO'], ['VBP'], ['PRP$']]).
 values('TO', [['to']]).
 values('TOP', [['S']]).
 values('UCP', [['NN', ',', 'NNS', ',', 'JJ', 'CC', 'NNS']]).
@@ -73,8 +70,6 @@ nonterminal('NNS').
 nonterminal('NP').
 nonterminal('NP-PRD').
 nonterminal('NP-SBJ').
-nonterminal('NT_,').
-nonterminal('NT_.').
 nonterminal('POS').
 nonterminal('PP').
 nonterminal('PP-CLR').
@@ -88,7 +83,6 @@ nonterminal('S').
 nonterminal('S-1').
 nonterminal('SBAR').
 nonterminal('SBAR-CLR').
-nonterminal('START').
 nonterminal('TO').
 nonterminal('TOP').
 nonterminal('UCP').
@@ -104,9 +98,9 @@ nonterminal('VP').
 %%  Modeling part:
 %%------------------------------------
 
-pcfg(L) :- pcfg('START', L-[]).
+pcfg(L) :- pcfg('S', L-[]).
 
-pcfg(LHS,L0-L1) :-
+pcfg(LHS, L0-L1) :-
     ( nonterminal(LHS) -> msw(LHS, RHS), proj(RHS, L0-L1)
     ; L0 = [LHS|L1]
     ).

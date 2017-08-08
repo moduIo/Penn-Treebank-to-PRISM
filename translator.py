@@ -35,7 +35,7 @@ def parse(productions, nonterminals, path):
 
 		# Remove extra formatting from .pos file
 		if path == sys.argv[2]:
-			rhs = rhs[3:-3].replace('\'', '\\\'')
+			rhs = rhs[3:-3].replace("'", "\\'")
 
 			# Skip rules which stand for themselves
 			if lhs == rhs:
@@ -48,18 +48,18 @@ def parse(productions, nonterminals, path):
 		if lhs in productions:
 			
 			if path == sys.argv[2]:
-				productions[lhs].append([rhs])
+				productions[lhs] += ", ['" + rhs + "']"
 				
 			else:
-				productions[lhs].append(rhs)
+				productions[lhs] += ", " + rhs + ""
 
 		else:
 
 			if path == sys.argv[2]:
-				productions[lhs] = [[rhs]]
+				productions[lhs] = "[['" + rhs + "']"
 				
 			else:
-				productions[lhs] = [rhs]
+				productions[lhs] = "[" + rhs
 
 ###
 # Main
@@ -91,8 +91,7 @@ values_sec += '\n% Probabilistic production rules'
 values_sec += '\n%'
 
 for p in sorted(productions):
-	cleaned = str(productions[p]).replace('["', '[\'').replace('"]', '\']').replace('"[', '[').replace(']"', ']').replace('\'[', '[').replace(']\'', ']').replace('\\\'', '\'')
-	values_sec += '\nvalues(\'' + p + '\', ' + cleaned + ').'
+	values_sec += '\nvalues(\'' + p + '\', ' + productions[p] + ']).'
 
 # Format nonterminal/1 section and PRISM rules
 nonterminals_sec = '\n\n%'

@@ -8,14 +8,14 @@
 # sys.argv[2] := PRISM program output file path
 #
 # Example Usage: 
-# python3 sample_extractor.py "Parses/wsj0.tagged" "sentences.dat"
+# python3 sample_extractor.py "Parses/wsj0.tagged" "PRISM/sentences.dat"
 ####
 import sys
 
 ###
 # Function parses sentences from .tagged file
 ###
-def parse(samples, path):
+def parse(samples, special_terminals, path):
 
 	with open(path) as f:
 		sentences = f.read().split('\n')
@@ -28,6 +28,10 @@ def parse(samples, path):
 		# Remove POS annotation from each word
 		for word in sentence.split(' ')[:-1]:
 			cleaned = word.split('/')[1][1:-1].replace("'", "\\'")
+
+			if cleaned in special_terminals:
+				cleaned = "TERM_" + cleaned
+
 			sample += "'" + cleaned + "'" + ', '
 
 		sample = sample[:-2]  # Remove extra ', '
@@ -38,7 +42,15 @@ def parse(samples, path):
 # Main
 ###
 samples = []
-parse(samples, sys.argv[1])
+special_terminals = []
+
+with open('ignore_terminals.txt') as f:
+	ignore = f.read().split('\n')[:-1]
+
+for terminal in ignore:
+	special_terminals.append(terminal)
+
+parse(samples, special_terminals, sys.argv[1])
 
 # Write to PRISM data file
 f = open(sys.argv[2], 'w+')

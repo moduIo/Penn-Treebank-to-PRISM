@@ -8,14 +8,14 @@
 # sys.argv[3] := PRISM program output file path
 #
 # Example Usage: 
-# python3 translator.py "Parses/wsj0.full" "Parses/wsj0.pos" "pcfg.psm"
+# python3 translator.py "Parses/wsj0.full" "Parses/wsj0.pos" "PRISM/pcfg.psm"
 ####
 import sys
 
 ###
 # Function parses grammar files
 ###
-def parse(productions, nonterminals, path):
+def parse(productions, nonterminals, special_terminals, path):
 
 	with open(path) as f:
 		rules = f.read().split('\n')
@@ -39,7 +39,8 @@ def parse(productions, nonterminals, path):
 
 			# Skip rules which stand for themselves
 			if lhs == rhs:
-				continue
+				rhs = 'TERM_' + rhs
+				special_terminals.add(lhs)
 
 		# Add LHS to nonterminals
 		nonterminals.add(lhs)
@@ -64,12 +65,13 @@ def parse(productions, nonterminals, path):
 ###
 # Main
 ###
-productions = {}      # Dictionary of rules indexed by LHS of production
-nonterminals = set()  # Set of nonterminal symbols
+productions = {}           # Dictionary of rules indexed by LHS of production
+nonterminals = set()       # Set of nonterminal symbols
+special_terminals = set()  # Set of terminals which are represented by the same nonterminal symbol (Ex: ',' -> ',')
 
 # Parse the files
-parse(productions, nonterminals, sys.argv[1])
-parse(productions, nonterminals, sys.argv[2])
+parse(productions, nonterminals, special_terminals, sys.argv[2])
+parse(productions, nonterminals, special_terminals, sys.argv[1])
 
 # Format header comment section of program
 header_sec = '%%%'
@@ -116,3 +118,8 @@ model_sec += '\nproj([X|Xs], L0-L1) :- pcfg(X, L0-L2), proj(Xs, L2-L1).'
 # Write to PRISM file
 f = open(sys.argv[3], 'w+')
 f.write(header_sec + declarations_sec + values_sec + nonterminals_sec + model_sec)
+
+# Write special terminals to ignore file
+f = open('ignore_terminals.txt', 'w+')
+for terminal in sorted(special_terminals):
+	f.write(terminal + '\n')

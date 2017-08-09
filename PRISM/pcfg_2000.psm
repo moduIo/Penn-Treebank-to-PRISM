@@ -13,7 +13,9 @@
 %
 % Probabilistic production rules
 %
+values(',', [['TERM_,']]).
 values('-NONE-', [['*ICH*-1'], ['*'], ['0'], ['*PRO*']]).
+values('.', [['TERM_.']]).
 values('ADJP', [['RB', 'HYPH', 'VBN']]).
 values('ADVP-TMP', [['RB']]).
 values('CC', [['and']]).
@@ -55,7 +57,9 @@ values('VP', [['VBD', 'NP'], ['VBZ', 'ADVP-TMP', 'VP'], ['VBG', 'NP'], ['VBN', '
 %
 % Nonterminals
 %
+nonterminal(',').
 nonterminal('-NONE-').
+nonterminal('.').
 nonterminal('ADJP').
 nonterminal('ADVP-TMP').
 nonterminal('CC').
